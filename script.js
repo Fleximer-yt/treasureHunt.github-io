@@ -128,26 +128,26 @@ const CONFETTI_COLORS = [
     "#c97fe5", "#ff7f50", "#fff", "#f9c74f", "#90e0ef"
 ];
 
-let progress = JSON.parse(localStorage.getItem("progress")) || {
+let progress = JSON.parse(sessionStorage.getItem("progress")) || {
     step1: false, step2: false, step3: false, step4: false, step5: false,
     step6: false, step7: false, step8: false, step9: false, step10: false,
     step11: false
 };
 
-let bonusProgress = JSON.parse(localStorage.getItem("bonusProgress")) || {
+let bonusProgress = JSON.parse(sessionStorage.getItem("bonusProgress")) || {
     step1: false, step2: false, step3: false, step4: false, step5: false,
     step6: false, step7: false, step8: false, step9: false, step10: false
 };
 
-let quizScores    = JSON.parse(localStorage.getItem("quizScores"))    || {};
-let finalized     = localStorage.getItem("finalized") === "true";
+let quizScores    = JSON.parse(sessionStorage.getItem("quizScores"))    || {};
+let finalized     = sessionStorage.getItem("finalized") === "true";
 
 let pendingCelebration = false;
 
 function saveProgress() {
-    localStorage.setItem("progress",      JSON.stringify(progress));
-    localStorage.setItem("bonusProgress", JSON.stringify(bonusProgress));
-    localStorage.setItem("quizScores",    JSON.stringify(quizScores));
+    sessionStorage.setItem("progress",      JSON.stringify(progress));
+    sessionStorage.setItem("bonusProgress", JSON.stringify(bonusProgress));
+    sessionStorage.setItem("quizScores",    JSON.stringify(quizScores));
 }
 
 function isUnlocked(n)    { return progress[`step${n}`] === true; }
@@ -612,7 +612,7 @@ function setupModals() {
         document.getElementById("confettiContainer").classList.add("hidden");
         unlockScroll();
         finalized = true;
-        localStorage.setItem("finalized", "true");
+        sessionStorage.setItem("finalized", "true");
         buildRoadmap();
     });
 }
@@ -740,12 +740,12 @@ function setupQrButton() {
 function setupTheme() {
     const html  = document.documentElement;
     const btn   = document.getElementById("themeToggle");
-    const saved = localStorage.getItem("theme") || "dark";
+    const saved = sessionStorage.getItem("theme") || "dark";
     html.setAttribute("data-theme", saved);
     btn.addEventListener("click", () => {
         const next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
         html.setAttribute("data-theme", next);
-        localStorage.setItem("theme", next);
+        sessionStorage.setItem("theme", next);
     });
 }
 
