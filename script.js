@@ -123,6 +123,9 @@ const STEPS = [
     }
 ];
 
+localStorage.clear()
+alert(JSON.stringify(localStorage))
+
 const CONFETTI_COLORS = [
     "#f0c94a", "#d4a017", "#e05555", "#4caf7d", "#5b9bd5",
     "#c97fe5", "#ff7f50", "#fff", "#f9c74f", "#90e0ef"
