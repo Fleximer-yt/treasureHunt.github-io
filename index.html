@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ro" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Treasure Hunting CNNT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-left">
+                <span class="header-icon">🗺️</span>
+                <div class="header-text">
+                    <h1 class="header-title">Treasure Hunt</h1>
+                    <span class="header-sub">CNNT Edition</span>
+                </div>
+            </div>
+            <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">
+                <span class="theme-icon-dark">🌙</span>
+                <span class="theme-icon-light">☀️</span>
+            </button>
+        </div>
+        <div class="header-glow"></div>
+    </header>
+
+    <main id="roadmapScroll">
+        <div class="road-line"></div>
+        <div id="stepsContainer"></div>
+    </main>
+
+    <button id="qrCodeButton" aria-label="Scaneaza QR">
+        <img src="images/QRCNNTRO.png" alt="QR" class="qrButtonLogo" onerror="this.style.display='none';this.parentElement.querySelector('.qr-fallback').style.display='flex'">
+        <span class="qr-fallback">📷</span>
+        <span class="qr-tooltip">Scaneaza QR</span>
+    </button>
+
+    <div id="qrOverlay" class="qr-overlay"></div>
+
+    <div id="qrPanel" class="qr-panel">
+        <div class="panel-drag-handle"></div>
+        <div class="qr-panel-header">
+            <h2>Scaneaza codul QR</h2>
+            <button id="qrPanelClose" class="icon-btn">✕</button>
+        </div>
+        <p class="qr-panel-hint">Îndreaptă camera spre codul QR de pe cartonaș</p>
+        <div id="reader"></div>
+        <div id="qrFeedback"></div>
+    </div>
+
+    <div id="stepModal" class="modal-overlay hidden">
+        <div class="modal-card" id="stepModalCard">
+            <button class="modal-close" id="modalClose">✕</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <div id="hintModal" class="modal-overlay hidden">
+        <div class="modal-card hint-card">
+            <button class="modal-close" id="hintClose">✕</button>
+            <div id="hintContent"></div>
+        </div>
+    </div>
+
+    <div id="bonusModal" class="modal-overlay hidden">
+        <div class="modal-card bonus-card">
+            <button class="modal-close" id="bonusClose">✕</button>
+            <div id="bonusContent"></div>
+        </div>
+    </div>
+
+    <div id="quizModal" class="modal-overlay hidden">
+        <div class="modal-card quiz-card">
+            <button class="modal-close" id="quizClose">✕</button>
+            <div id="quizContent"></div>
+        </div>
+    </div>
+
+    <div id="confettiContainer" class="confetti-container hidden"></div>
+
+    <div id="celebrationOverlay" class="celebration-overlay hidden">
+        <div class="celebration-card">
+            <span class="celebration-trophy">🏆</span>
+            <h2 class="celebration-title">Felicitări!</h2>
+            <p class="celebration-sub">Ai finalizat Treasure Hunt CNNT!</p>
+
+            <div class="score-ring-wrap">
+                <div class="score-ring">
+                    <svg viewBox="0 0 130 130">
+                        <defs>
+                            <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#f0c94a"/>
+                                <stop offset="100%" stop-color="#d4a017"/>
+                            </linearGradient>
+                        </defs>
+                        <circle class="score-ring-bg" cx="65" cy="65" r="55"/>
+                        <circle class="score-ring-fill" id="scoreRingFill" cx="65" cy="65" r="55"
+                            stroke-dasharray="345.4"
+                            stroke-dashoffset="345.4"/>
+                    </svg>
+                    <div class="score-center">
+                        <span class="score-number" id="scoreNum">0</span>
+                        <span class="score-total">/ 20</span>
+                    </div>
+                </div>
+                <span class="score-label" id="scoreLabel">puncte</span>
+            </div>
+
+            <div class="score-breakdown">
+                <div class="score-item">
+                    <span class="score-item-val" id="stepsScore">0</span>
+                    <span class="score-item-label">Etape<br>deblocate</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-item-val" id="quizScore">0</span>
+                    <span class="score-item-label">Quiz-uri<br>corecte</span>
+                </div>
+            </div>
+
+            <button class="celebration-close-btn" id="celebrationClose">Închide aventura 🗺️</button>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script src="script.js"></script>
+</body>
+</html>
