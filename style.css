@@ -1506,3 +1506,121 @@ body.modal-open {
     opacity: 0.9;
     transform: translateY(-1px);
 }
+
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url('images/map-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity var(--transition);
+}
+
+[data-theme="dark"] body::after {
+    opacity: 0.07;
+}
+
+[data-theme="light"] body::after {
+    opacity: 0.18;
+}
+
+.pirate-x-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0 10px;
+    animation: fadeIn 0.8s ease;
+}
+
+.pirate-x-lines {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    margin-bottom: 10px;
+}
+
+.pirate-x-line {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 7px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, transparent, var(--gold-light), var(--gold), var(--gold-light), transparent);
+    box-shadow: 0 0 14px rgba(212, 160, 23, 0.55);
+}
+
+.pirate-x-line-1 {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.pirate-x-line-2 {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.pirate-x-text {
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: badgePulse 2.5s ease-in-out infinite;
+}
+
+.qr-btn-finalized {
+    opacity: 0.35 !important;
+    cursor: not-allowed !important;
+    filter: grayscale(0.7);
+}
+
+.quiz-option-multi {
+    cursor: pointer;
+    position: relative;
+}
+
+.quiz-option-multi.selected {
+    border-color: var(--border-hover);
+    background: var(--quiz-opt-hover);
+}
+
+.quiz-check-icon {
+    position: absolute;
+    right: 14px;
+    font-size: 1rem;
+    color: var(--gold);
+    flex-shrink: 0;
+}
+
+.quiz-multi-hint {
+    font-size: 0.74rem;
+    color: var(--text-sub);
+    margin-bottom: 10px;
+    text-align: center;
+    font-style: italic;
+}
+
+.quiz-confirm-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+    color: #1a0e00;
+    border: none;
+    border-radius: 11px;
+    padding: 11px 20px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-bottom: 12px;
+    transition: opacity 0.2s, transform 0.15s;
+    box-shadow: 0 3px 12px rgba(212, 160, 23, 0.3);
+}
+
+.quiz-confirm-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
