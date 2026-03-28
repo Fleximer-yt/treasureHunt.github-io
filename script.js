@@ -1108,7 +1108,15 @@ function StopQrReader() {
 }
 
 function onQrScanSuccess(decoded) {
-    const stepKey = Object.keys(CODES).find(k => CODES[k] === decoded.trim());
+    const text = decoded.trim();
+    if (text === "ERASELOCALSTORAGE") {
+        localStorage.clear();
+        sessionStorage.clear();
+        window.location.reload();
+        return;
+    }
+
+    const stepKey = Object.keys(CODES).find(k => CODES[k] === text);
     if (!stepKey) { showFeedback("❌ Cod QR necunoscut.", "feedback-error"); return; }
 
     const stepNum = parseInt(stepKey.replace("step", ""));
