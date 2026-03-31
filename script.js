@@ -9,11 +9,13 @@ const CODES = {
     step5: "5__U1V3^W7X$",
     step6: "6__Y2Z4!A5B#",
     step7: "7__C7D1E@2F%",
+    step8: "8__B^CR&*A)H"
 };
 
 // ──────────────────────────────────────────────
 //  STEPS DATA
 //  bonus[] – each item can be:
+//    { type:"info",       label, text }  (text informativ/instrucțiuni)
 //    { type:"photo",      label, description }
 //    { type:"qr",         label, description, code }  ← code is optional; if set, validates
 //    { type:"image_text", label, description, image, placeholder }
@@ -24,81 +26,122 @@ const CODES = {
 // ──────────────────────────────────────────────
 const STEPS = [
     {
-        num: 1, name: "Statuia lui Shakespeare", image: "images/step1.jpg",
-        text: "Ai ajuns la statuia lui William Shakespeare! Acesta este un renumit scriitor englez cunoscut pentru opere precum Romeo si Julieta, Hamlet si Macbeth, dar si pentru sonetele sale. El este considerat cel mai mare dramaturg al limbii engleze si unul dintre cei mai mari scriitori ai lumii.",
-        hint: "Mare personalitate! Din Anglia, a trait in sec. 19 si a fost un renumit scriitor.",
+        num: 1,
+        name: "Statuia lui William Shakespeare",
+        image: "images/step1.jpg",
+        text: "Statuia lui William Shakespeare din Craiova se află în fața Teatrului Național 'Marin Sorescu', una dintre cele mai vechi scene dramatice din România, fondată în 1850. Craiova este singurul oraș din lume (în afara Angliei) care găzduiește un Festival Internațional Shakespeare dedicat exclusiv marelui dramaturg englez — un eveniment de renume mondial ce atrage trupe din zeci de țări. Shakespeare (1564–1616) a revoluționat literatura universală prin opere ca Hamlet, Macbeth, Regele Lear și Romeo și Julieta, explorând condiția umană cu o profunzime fără egal.",
+        hint: "Un scriitor celebru te așteaptă aproape de teatru.",
         bonus: [
-            { type: "photo", label: "O poza cu statuia completa SI UN MEMBRU AL ECHIPEI", description: "Scriitorul este..." },
-            { type: "text_text", label: "Scriitorul este...", question: "Scriitorul este...", valid: "William Shakespeare" },
-            { type: "quiz", label: "Quiz", question: "In ce an s-a nascut scriitorul", options: ["1564", "1616", "1584", "1600"], valid: "1564" },
+            { type: "info", label: "Informații", text: "" },
+            { type: "photo", label: "Poză de grup", description: "Faceți o poză cu toată echipa lângă statuie." },
+            { type: "quiz", label: "Quiz", question: "Ce distincție unică are Craiova în legătură cu Shakespeare, față de orice alt oraș din afara Angliei?", options: ["Are cea mai mare statuie a sa", "Organizează singurul Festival Internațional Shakespeare", "A tradus primul operele sale", "A construit primul teatru shakespearian"], valid: "Organizează singurul Festival Internațional Shakespeare" },
+            { type: "quiz", label: "Quiz", question: "În ce an a fost fondat Teatrul Național din Craiova, în fața căruia se află această statuie?", options: ["1820", "1850", "1877", "1900"], valid: "1850" },
+            { type: "text_text", label: "Ghicitoare", question: "A fost reședința Banilor de odinioară, un centru de putere. Azi e recunoscută pentru un parc întins și o universitate prestigioasă. Care este numele ei?", valid: "Craiova" }
         ]
     },
+
     {
-        num: 2, name: "Cofetaria Minerva", image: "images/step2.jpg",
-        text: "Ai ajuns la Cofetaria Minerva! Aceasta este o cofetarie traditionala din Craiova, infiintata in anul 1903. Este una dintre cele mai vechi si cunoscute cofetarii din Romania, renumita pentru prajiturile sale delicioase si atmosfera sa boema.",
-        hint: "Am arcade maure și parfum de epocă, în inima orașului, pe-o stradă aproape. Lumea bună-n trecut la mine se strângea, Amza, Farago, de Gaulle pe-aici trecea. Tort și ecler, mousse și cremă fină, din 1902 te cheamă-o vitrină. Dacă vrei dulceață cu farmec regal, ce loc din Craiova e unic și special?",
+        num: 2,
+        name: "Statuia lui Mihai I",
+        image: "images/step2.jpg",
+        text: "Mihai I (1921–2017) a fost ultimul rege al României, urcând pe tron la doar 6 ani (1927–1930), apoi din nou în 1940. Pe 23 august 1944 a dat dovadă de un curaj excepțional: l-a arestat pe Ion Antonescu și a scos România din alianța cu Germania nazistă, scurtând astfel Al Doilea Război Mondial cu cel puțin un an, conform analiștilor militari. Forțat să abdice de regimul comunist pe 30 decembrie 1947, a trăit zeci de ani în exil. Regele Mihai este considerat un simbol al demnității, rezistenței și al valorilor democratice ale României.",
+        hint: "Caută statuia ultimului rege al României.",
         bonus: [
-            { type: "photo", label: "O poza cu cofetaria cu statuia completa SI UN MEMBRU AL ECHIPEI", description: "Cofetaria Minerva..." },
-            { type: "quiz", label: "Quiz", question: "De cati ani functioneaza cofetaria Minerva?", options: ["126", "124", "123", "120"], valid: "123" },
-            { type: "image_text", image: "images/ViteazuCifer.png", label: "Mesajul transmis de imagine va duce la urmatoarea etapa", question: "Simbolurile se traduc ca...", valid: "A fost in timpul sau viteaz" },
+            { type: "photo", label: "Poză de grup", description: "Poză cu echipa lângă statuie." },
+            { type: "quiz", label: "Quiz", question: "Ce act de curaj a realizat Regele Mihai I pe 23 august 1944, schimbând cursul istoriei?", options: ["A semnat Constituția regală", "L-a arestat pe Antonescu și a scos România din război alături de Germania", "A declarat independența față de URSS", "A abdicat în favoarea unui guvern democratic"], valid: "L-a arestat pe Antonescu și a scos România din război alături de Germania" },
+            { type: "quiz", label: "Quiz", question: "La ce vârstă a urcat prima dată pe tron Regele Mihai I al României?", options: ["4 ani", "6 ani", "10 ani", "18 ani"], valid: "6 ani" },
+            { type: "text_text", label: "Ghicitoare", question: "A face nevăzut un lucru de preț, a-l păstra departe de privirile celorlalți, acțiune la timpul prezent, persoana a treia singular. Ce face?", valid: "ascunde" }
         ]
     },
+
     {
-        num: 3, name: "Statuia lui Mihai Viteazu", image: "images/step3.jpg",
-        text: "Ai ajuns la Statuia lui Mihai Viteazu! Mihai Viteazu a fost un domnitor roman care a unit pentru scurt timp Tarile Romane in anul 1600. Este considerat unul dintre cei mai mari eroi nationali ai Romaniei, simbolizand unitatea si independenta poporului roman.",
-        hint: "Mesajul este transmis in bonusurile anterioare! + Uitate sub!",
+        num: 3,
+        name: "Cofetăria Minerva",
+        image: "images/step3.jpg",
+        text: "Clădirea Minerva, ridicată la începutul secolului XX, este un simbol arhitectural al Craiovei Belle Époque. Stilul neo-maur (hispano-maur) se remarcă prin arcadele în potcoavă, ornamentele geometrice arabe și mozaicurile colorate — elemente preluate din arhitectura Andaluziei medievale. A funcționat ca hotel de lux, restaurant și cofetărie, devenind punctul de întâlnire predilect al elitei comerciale și culturale a orașului. Craiova era, la acea vreme, cel mai prosper oraș din sudul Carpaților, cu o viață culturală efervescentă, rivalizând cu Bucureștiul în eleganță și modernitate.",
+        hint: "Clădire elegantă unde mănânci, te îndulcești și te poți odihni.",
         bonus: [
-            { type: "photo", label: "O poza cu statuie cu Mihai Viteazu SI UN MEMBRU AL ECHIPEI", description: "Statuia lui Mihai Viteazu..." },
-            { type: "quiz", label: "Quiz", question: "In ce an s-a nascut Mihai Viteazu?", options: ["1552", "1558", "1562", "1568"], valid: "1552" },
-            { type: "quiz", label: "Quiz", question: "In ce an a facut Mihai Viteazu prima sa unire a Tarilor Romane?", options: ["1599", "1600", "1601", "1602"], valid: "1600" },
+            { type: "photo", label: "Poză de grup", description: "Poză cu echipa în fața clădirii." },
+            { type: "quiz", label: "Quiz", question: "Din ce regiune a lumii provine stilul arhitectural neo-maur al clădirii Minerva?", options: ["Orientul Îndepărtat", "Andaluzia medievală hispanică", "Imperiul Otoman", "Africa de Nord berberă"], valid: "Andaluzia medievală hispanică" },
+            { type: "quiz", label: "Quiz", question: "Ce element arhitectural definitoriu al stilului maur este vizibil la fațada clădirii Minerva?", options: ["Coloane ionice", "Turle bizantine", "Arcuri în formă de potcoavă", "Contraforturi gotice"], valid: "Arcuri în formă de potcoavă" },
+            { type: "text_text", label: "Ghicitoare", question: "Nu sunt doar din aur, pot fi de artă. Pirații le îngroapă, iar voi le căutați chiar acum. (substantiv plural, nearticulat)", valid: "comori" }
         ]
     },
+
     {
-        num: 4, name: "Caracterul Zita din O noapte furtunoasa", image: "images/step4.jpg",
-        text: "Această lucrare din bronz o reprezintă pe Zița, un personaj celebru din piesa de teatru O noapte furtunoasă, scrisă de Ion Luca Caragiale. Statuia a fost instalată în zona pietonală (aproape de strada Lipscani) ca parte a unui proiect de revitalizare a centrului istoric prin artă stradală",
-        hint: "In centrul vechi, un personaj razboinic feminin te asteapta!",
+        num: 4,
+        name: "Statuia lui Mihai Viteazu",
+        image: "images/step4.jpg",
+        text: "Mihai Viteazu (1558–1601) este considerat primul unificator al celor trei Țări Române — Muntenia, Moldova și Transilvania — realizând, efemer, unirea lor în 1600. Oltenia a jucat un rol strategic esențial în campaniile sale militare. Domnitorul a câștigat bătălia de la Călugăreni (1595) împotriva otomanilor și bătălia de la Șelimbăr (1599), care i-a deschis drumul spre Alba Iulia. Asasinat în câmpia de la Turda în 1601, a rămas cel mai venerat erou militar al românilor. Statuia din Craiova îl înfățișează cu sabia ridicată, ca simbol al curajului și al unității naționale.",
+        hint: "Caută statuia unui domnitor care a unit Țările Române.",
         bonus: [
-            { type: "photo", label: "O poza cu statuie cu Zita din O noapte furtunoasa SI UN MEMBRU AL ECHIPEI", description: "Statuia lui Zita din O noapte furtunoasa..." },
-            { type: "quiz", label: "Quiz", question: "In ce an s-a nascut Ion Luca Caragiale?", options: ["1852", "1858", "1862", "1868"], valid: "1852" },
-            { type: "text_text", label: "Tine foaia data de coordonator cu tine, o sa ai nevoie de ea mai tarziu", question: "Raspunde cu DA daca ai inteles ce ai de facut", valid: "DA" },
-        ] // pe foaie scrie GNXPJZLF XKFTSF YWJNJR -- cifru caesar in fata + 5
-    },
-    {
-        num: 5, name: "Biserica Sfânta Treime", image: "images/step5.jpg",
-        text: "Biserica Sfânta Treime din Craiova este un monument istoric și de arhitectură religioasă, situat în centrul istoric al orașului. Construită în stil neobizantin, biserica impresionează prin picturile murale interioare. Este un important lăcaș de cult și un simbol al spiritualității locale.",
-        hint: "Pe acea foaie este un cifru Caesar cu cifra intre 4 si 6, descopera care este mesajul si adauga YWJNJR la final in acelas cifru.",
-        bonus: [
-            { type: "photo", label: "O poza cu Biserica Sfânta Treime SI UN MEMBRU AL ECHIPEI", description: "Biserica Sfânta Treime..." },
-            { type: "quiz", label: "Quiz", question: "In ce stil arhitectural este construita Biserica Sfânta Treime?", options: ["Neobizantin", "Neoclasic", "Gotic", "Baroc"], valid: "Neobizantin" },
-            { type: "quiz", label: "Quiz", question: "Cati turle are Biserica Sfânta Treime?", options: ["1", "2", "3", "4"], valid: "1" },
-            { type: "qr", label: "QR", description: "Scaneaza codul QR de pe foaia coordonatorului gasit langa biserica!", code: "Esti un maestru la asta!" },
+            { type: "photo", label: "Poză de grup", description: "Poză cu echipa lângă statuie." },
+            { type: "quiz", label: "Quiz", question: "Unde a fost asasinat Mihai Viteazu, în 1601, la scurt timp după ce realizase unirea?", options: ["Câmpia de la Turda", "Câmpia de la Rovine", "Defileul Jiului", "Câmpia de la Călugăreni"], valid: "Câmpia de la Turda" },
+            { type: "quiz", label: "Quiz", question: "Ce bătălie decisivă din 1599 i-a deschis lui Mihai Viteazu drumul spre Alba Iulia și unirea Transilvaniei?", options: ["Bătălia de la Vaslui", "Bătălia de la Călugăreni", "Bătălia de la Șelimbăr", "Bătălia de la Posada"], valid: "Bătălia de la Șelimbăr" },
+            { type: "text_text", label: "Ghicitoare", question: "Ce sunt lucrurile care au trecut proba secolelor și au o istorie lungă de povestit? (adjectiv, masculin plural)", valid: "vechi" }
         ]
     },
+
     {
-        num: 6, name: "English Park", image: "images/step6.jpg",
-        text: "English Park este un parc modern situat în Craiova, renumit pentru arhitectura sa peisagistică și spațiile dedicate relaxării. Este un loc popular pentru plimbări și activități în aer liber, oferind o oază de verdeață în mijlocul orașului.",
-        hint: "Hintul se afla in codul qr scanat!",
+        num: 5,
+        name: "Statuia Zița",
+        image: "images/step5.jpg",
+        text: "Zița este personajul central din 'O noapte furtunoasă' (1879), capodopera dramaturgului Ion Luca Caragiale. Piesa satirizează cu umor acid moravurile burgheziei române de la sfârşitul secolului XIX — ipocrizia, infidelitatea conjugală și goana după parvenire socială. Caragiale (1852–1912) a vizitat Craiova de mai multe ori și a întreținut relații cu lumea culturală olteană. Statuia Ziței, amplasată în centrul vechi al orașului, conectează Craiova de marile tradiții teatrale românești și celebrează identitatea culturală a urbei. Teatrul Național din Craiova pune periodic în scenă piesele lui Caragiale.",
+        hint: "În centrul vechi găsești un personaj de teatru.",
         bonus: [
-            { type: "photo", label: "O poza cu English Park SI UN MEMBRU AL ECHIPEI", description: "English Park..." },
-            { type: "quiz", label: "Quiz", question: "In ce an s-a deschis English Park?", options: ["1932", "1940", "1920", "1930"], valid: "1932" },
-            { type: "text_text", label: "Cauta si gaseste", question: "Pe unele banci din English Park sunt ascunse foi cu coduri HEX. Introdu sirul compus aici", valid: "4D45524355522D455433" },
-            { type: "text_text", label: "Codul tau trebuie tradus!", question: "Tradu codul pe orice site hex to letter si introdu aici solutia: ", valid: "MERCUR-ET3" },
+            { type: "photo", label: "Poză de grup", description: "Poză cu echipa lângă statuie." },
+            { type: "quiz", label: "Quiz", question: "Ce critică socială centrală face Caragiale în piesa 'O noapte furtunoasă'?", options: ["Exploatarea țăranilor de boieri", "Ipocrizia și moravurile burgheziei române", "Corupția administrației imperiale", "Decăderea moralei aristocratice"], valid: "Ipocrizia și moravurile burgheziei române" },
+            { type: "quiz", label: "Quiz", question: "În ce an a scris Ion Luca Caragiale piesa 'O noapte furtunoasă' în care apare personajul Zița?", options: ["1865", "1879", "1893", "1907"], valid: "1879" },
+            { type: "text_text", label: "Ghicitoare", question: "Prepoziție simplă din trei litere care indică proveniența sau originea (de exemplu: un dar _ _ _ suflet).", valid: "din" }
         ]
     },
+
     {
-        num: 7, name: "Locatia Finala", image: "images/win.jpg",
-        text: "Ai reusit! Ai descoperit Locatia Finala a Treasure Hunt CNNT. Aceasta calatorie a testat cunoasterea ta, perseverenta si spiritul de aventura. Tine minte acest moment — esti un adevarat Treasure Hunter!",
-        hint: "Ai completat toate etapele! Acum trebuie sa gasesti si sa scanezi codul QR final pentru a-ti revendica victoria.",
+        num: 6,
+        name: "Statuia lui Barbu Dimitrie Știrbei",
+        image: "images/step6.jpg",
+        text: "Barbu Dimitrie Știrbei (1799–1869) a domnit peste Țara Românească între 1849 și 1856, fiind unul dintre cei mai reformatori conducători ai epocii premoderne. A reorganizat sistemul de învățământ, redeschizând școli și înființând primele licee publice. A modernizat infrastructura, a construit drumuri și poduri și a stabilizat finanțele dezorganizate după Revoluția de la 1848. A gestionat cu abilitate diplomatică relațiile cu Imperiul Otoman, Imperiul Rus și Imperiul Austro-Ungar în contextul Războiului Crimeei. Craiova — cel mai important centru comercial al Olteniei — a beneficiat direct de reformele sale.",
+        hint: "Caută statuia unui domnitor care a reorganizat armata si infrastructura tarii.",
         bonus: [
-            { type: "photo", label: "O poza de grup cu toti membrii echipei", description: "Felicitari!" },
+            { type: "photo", label: "Poză de grup", description: "Poză cu echipa lângă statuie." },
+            { type: "quiz", label: "Quiz", question: "Între ce ani a guvernat Barbu Dimitrie Știrbei ca domn al Țării Românești?", options: ["1821–1828", "1834–1842", "1849–1856", "1859–1866"], valid: "1849–1856" },
+            { type: "quiz", label: "Quiz", question: "Ce conflict european major a gestionat diplomatic Știrbei, menținând autonomia Țării Românești?", options: ["Războiul Franco-Prusac", "Războiul Crimeei", "Revoluția Franceză", "Congresul de la Viena"], valid: "Războiul Crimeei" },
+            { type: "text_text", label: "Ghicitoare", question: "Bate neîncetat pentru a da viață, iar atunci când vorbim de un oraș sau regiune, reprezintă însăși centrul ei. Ce este? (substantiv, formă articulată)", valid: "inima" }
+        ]
+    },
+
+    {
+        num: 7,
+        name: "Biblioteca Aman – Grigore Vieru",
+        image: "images/step7.jpg",
+        text: "Statuia lui Grigore Vieru (1935–2009) se află în fața Bibliotecii Județene 'Alexandru și Aristia Aman', două personalități emblematice reunite într-un singur spațiu cultural. Grigore Vieru — poet basarabean de excepție — a dedicat versuri memorabile mamei, limbii române și dorului de unitate națională, devenind un simbol al identității culturale de dincolo de Prut. Biblioteca Aman, fondată în 1893 datorită donației pictorului craiovean Theodor Aman (cel care a dat și numele Ateneului Român și a fondat Școala de Belle Arte din București), adăpostește sute de mii de volume, manuscrise rare și colecții de artă inestimabilă.",
+        hint: "Caută un poet care a scris despre mamă și neam, în apropierea unei biblioteci importante din centrul orașului.",
+        bonus: [
+            { type: "photo", label: "Poză de grup", description: "Poză cu echipa lângă statuie." },
+            { type: "quiz", label: "Quiz", question: "Cine a donat fondurile pentru înființarea Bibliotecii Aman din Craiova, în 1893?", options: ["Grigore Vieru", "Theodor Aman", "Barbu Știrbei", "Alexandru Ioan Cuza"], valid: "Theodor Aman" },
+            { type: "quiz", label: "Quiz", question: "De unde provenea poetul Grigore Vieru, cunoscut pentru versurile despre mamă și identitatea românească?", options: ["Oltenia", "Basarabia", "Ardeal", "Bucovina"], valid: "Basarabia" },
+            { type: "text_text", label: "Ghicitoare", question: "Ținutul Jiului și al Oltului, pământ de panduri și de legendă. Cum i se spune acestui ținut la cazul genitiv?", valid: "Olteniei" }
+        ]
+    },
+
+    {
+        num: 8,
+        name: "Alexandru Ioan Cuza – English Park",
+        image: "images/step8.jpg",
+        text: "Alexandru Ioan Cuza (1820–1873) a fost primul domnitor al Principatelor Unite, ales dublu — în Moldova (5 ianuarie 1859) și în Muntenia (24 ianuarie 1859) — realizând unirea de facto a celor două principate, premisă a României moderne. A realizat reforma agrară din 1864, prin care peste 400.000 de familii de țărani au primit pământ, și a secularizat averile mănăstirești. Statuia sa se află în English Park, realizat în perioada interbelică și este amenajat în stilul tradițional al grădinilor din Regatul Unit, cu alei frumos pavate, arbuști ornamentali, bănci pentru relaxare și o fântână arteziană în centru.",
+        hint: "Caută domnitorul care a realizat Unirea Principatelor într-un parc ce amintește de grădinile londoneze.",
+        bonus: [
+            { type: "photo", label: "Poză finală", description: "Poză finală cu toată echipa." },
+            { type: "quiz", label: "Quiz", question: "Cine a proiectat English Park din Craiova (Grădina Unirii)?", options: ["Édouard Redont", "Ion Mincu", "Constantin Iotzu", "Gustave Eiffel"], valid: "Constantin Iotzu" },
+            { type: "text_text", label: "Marea Descoperire", question: "Propoziția formată alăturând răspunsurile corecte obținute la pașii precedenți este: (utilizează un singur spațiu între cuvinte)", valid: "Craiova ascunde comori vechi din inima Olteniei" }
         ]
     }
 ];
 
-const lastNum = 7;
+const lastNum = 8;
 
 const CONFETTI_COLORS = [
-    "#f0c94a", "#d4a017", "#e05555", "#4caf7d", "#5b9bd5",
+    "#f0c94a", "#d4a017", "#e05555", "#ceffe7ff", "#5b9bd5",
     "#c97fe5", "#ff7f50", "#fff", "#f9c74f", "#90e0ef"
 ];
 
@@ -210,8 +253,6 @@ function buildRoadmap() {
 
     STEPS.forEach((step) => {
         const isFinal = step.num === lastNum;
-        const showFinal = isFinal && allTenComplete();
-        if (isFinal && !showFinal) return;
 
         const unlocked = isUnlocked(step.num);
         const available = isAvailable(step.num);
@@ -396,7 +437,7 @@ function showStepModal(num) {
     }
 
     let scoreHTML = "";
-    if (num === lastNum && isUnlocked(num)) {
+    if (num === lastNum && isUnlocked(num) && (finalized || allBonusDone(num))) {
         const score = calculateScore();
         const maxScore = (lastNum - 1) + STEPS.filter(s => s.bonus).reduce((acc, s) => acc + (s.bonus?.filter(b => b.type === "quiz").length || 0), 0);
 
@@ -491,8 +532,8 @@ function renderBonusItem(num, idx) {
         return `<span class="${cl}"></span>`;
     }).join("");
 
-    const typeIcon = { photo: "📷", qr: "🔳", image_text: "🖼️", quiz: "❓" }[item.type] || "🎯";
-    const typeLabel = { photo: "Foto", qr: "Cod QR", image_text: "Imagine + Text", quiz: "Quiz" }[item.type] || "Bonus";
+    const typeIcon = { photo: "📷", qr: "🔳", image_text: "🖼️", quiz: "❓", info: "ℹ️" }[item.type] || "🎯";
+    const typeLabel = { photo: "Foto", qr: "Cod QR", image_text: "Imagine + Text", quiz: "Quiz", info: "Informație" }[item.type] || "Bonus";
 
     let innerHTML = "";
 
@@ -506,6 +547,8 @@ function renderBonusItem(num, idx) {
         innerHTML = buildTextTextUI(num, idx, done, item);
     } else if (item.type === "quiz") {
         innerHTML = buildQuizUI(num, idx, done, item);
+    } else if (item.type === "info") {
+        innerHTML = buildInfoUI(num, idx, done, item);
     }
 
     content.innerHTML = `
@@ -549,6 +592,26 @@ function renderBonusItem(num, idx) {
     if (item.type === "image_text") attachImageTextListeners(num, idx, item, done);
     if (item.type === "text_text") attachTextTextListeners(num, idx, item, done);
     if (item.type === "qr") attachManualCodeListener(num, idx, item.code);
+    if (item.type === "info" && !done) {
+        document.getElementById("infoSubmit")?.addEventListener("click", () => {
+            completeBonusItem(num, idx, "info", { read: true });
+        });
+    }
+}
+
+// ── Info ──
+function buildInfoUI(num, idx, done, item) {
+    return `
+        <div class="info-wrap" style="text-align:center; padding: 20px 0;">
+            <p style="font-size: 1.05rem; color: var(--text-light); line-height: 1.5; margin-bottom: 20px;">
+                ${item.text || "Acesta este un text informativ."}
+            </p>
+            ${!done
+            ? '<button class="bonus-submit-btn" id="infoSubmit" style="width: 100%;">Am înțeles</button>'
+            : '<div class="bonus-feedback success">✓ Bifă pusă</div>'
+        }
+        </div>
+    `;
 }
 
 // ── Photo ──
@@ -900,6 +963,9 @@ function completeBonusItem(num, idx, type, data) {
         setTimeout(() => renderBonusItem(num, idx + 1), 900);
     } else {
         // All bonus items completed — show completion screen
+        if (num === lastNum && isUnlocked(num) && allBonusDone(num)) {
+            pendingCelebration = true;
+        }
         setTimeout(() => showBonusAllDone(num), 900);
     }
 }
@@ -908,6 +974,8 @@ function showBonusAllDone(num) {
     const step = STEPS[num - 1];
     const content = document.getElementById("bonusContent");
     if (!content) return;
+
+    const isLastStep = num === lastNum && allBonusDone(num);
 
     const progressDots = step.bonus.map((_, i) => {
         return `<span class="bonus-dot done"></span>`;
@@ -922,16 +990,32 @@ function showBonusAllDone(num) {
             </div>
         </div>
         <div class="bonus-all-done-wrap">
-            <span class="bonus-all-done-icon">🎉</span>
-            <h3 class="bonus-all-done-title">Activități complete!</h3>
-            <p class="bonus-all-done-sub">Ai finalizat toate activitățile bonus pentru <strong>${step.name}</strong>.</p>
-            <button class="bonus-submit-btn" id="bonusReviewBtn">Revezi activitățile →</button>
+            <span class="bonus-all-done-icon">${isLastStep ? "🏆" : "🎉"}</span>
+            <h3 class="bonus-all-done-title">${isLastStep ? "Aventura s-a încheiat!" : "Activități complete!"}</h3>
+            <p class="bonus-all-done-sub">${isLastStep
+            ? "Felicitări! Ai finalizat toate etapele și bonusurile. Pregătește-te pentru ceremonia de premiere! 🎊"
+            : `Ai finalizat toate activitățile bonus pentru <strong>${step.name}</strong>.`
+        }</p>
+            ${!isLastStep ? `<button class="bonus-submit-btn" id="bonusReviewBtn">Revezi activitățile →</button>` : ""}
         </div>
     `;
 
     document.getElementById("bonusReviewBtn")?.addEventListener("click", () => {
         renderBonusItem(num, 0);
     });
+
+    // For the last step: auto-close bonus modal and launch celebration after 2.5s
+    if (isLastStep) {
+        setTimeout(() => {
+            if (!pendingCelebration) return; // already handled by manual close
+            pendingCelebration = false;
+            stopBonusScanner();
+            stopPhotoStream();
+            closeModal("bonusModal");
+            unlockScroll();
+            showCelebration();
+        }, 2500);
+    }
 }
 
 // ──────────────────────────────────────────────
@@ -1178,6 +1262,7 @@ function setupModals() {
     document.getElementById("bonusClose").addEventListener("click", () => {
         stopBonusScanner(); stopPhotoStream();
         closeModal("bonusModal");
+        if (pendingCelebration) { pendingCelebration = false; showCelebration(); }
     });
 
     ["stepModal", "hintModal", "bonusModal"].forEach(id => {
@@ -1185,7 +1270,10 @@ function setupModals() {
             if (e.target !== e.currentTarget) return;
             if (id === "bonusModal") { stopBonusScanner(); stopPhotoStream(); }
             closeModal(id);
-            if (id === "stepModal" && pendingCelebration) { pendingCelebration = false; showCelebration(); }
+            if ((id === "stepModal" || id === "bonusModal") && pendingCelebration) {
+                pendingCelebration = false;
+                setTimeout(() => showCelebration(), 300);
+            }
         });
     });
 
