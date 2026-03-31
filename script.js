@@ -32,7 +32,6 @@ const STEPS = [
         text: "Statuia lui William Shakespeare din Craiova se află în fața Teatrului Național 'Marin Sorescu', una dintre cele mai vechi scene dramatice din România, fondată în 1850. Craiova este singurul oraș din lume (în afara Angliei) care găzduiește un Festival Internațional Shakespeare dedicat exclusiv marelui dramaturg englez — un eveniment de renume mondial ce atrage trupe din zeci de țări. Shakespeare (1564–1616) a revoluționat literatura universală prin opere ca Hamlet, Macbeth, Regele Lear și Romeo și Julieta, explorând condiția umană cu o profunzime fără egal.",
         hint: "Un scriitor celebru te așteaptă aproape de teatru.",
         bonus: [
-            { type: "info", label: "Informații", text: "" },
             { type: "photo", label: "Poză de grup", description: "Faceți o poză cu toată echipa lângă statuie." },
             { type: "quiz", label: "Quiz", question: "Ce distincție unică are Craiova în legătură cu Shakespeare, față de orice alt oraș din afara Angliei?", options: ["Are cea mai mare statuie a sa", "Organizează singurul Festival Internațional Shakespeare", "A tradus primul operele sale", "A construit primul teatru shakespearian"], valid: "Organizează singurul Festival Internațional Shakespeare" },
             { type: "quiz", label: "Quiz", question: "În ce an a fost fondat Teatrul Național din Craiova, în fața căruia se află această statuie?", options: ["1820", "1850", "1877", "1900"], valid: "1850" },
